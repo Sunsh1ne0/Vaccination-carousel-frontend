@@ -1,0 +1,17 @@
+.oneLineStat {
+    display: flex;
+    padding: 0;
+    /* background-color: antiquewhite; */
+    height: 3.7em;
+    margin: 5px 0 5px 0;
+    overflow: auto;
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+}
+
+.oneLineStat h1 {
+    display: block;
+    text-align: center;
+    font-size: 1em;
+    width: 20%;
+    margin: auto;
+}

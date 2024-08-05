@@ -1,0 +1,37 @@
+.headerBox {
+    /* min-width: 800px; */
+    margin: 0.5em;
+    padding: 0;
+    display: none;
+}
+
+@media screen and (max-width: 580px) {
+    .dateBox {
+        display: none;
+    }
+    .divider {
+        display: none;
+    }
+    .clockBox {
+        display: none;
+    }
+    .headerTitle {
+        display: none;
+    }
+    .infoBox {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .dateBox {
+        display: none;
+    }
+    .divider {
+        display: none;
+    }
+    .clockBox {
+        display: none;
+    }
+
+}
