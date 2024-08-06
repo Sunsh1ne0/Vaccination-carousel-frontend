@@ -2,10 +2,8 @@ import React from 'react'
 import { Box, FormControl, Input } from '@mui/material';
 import '../../styles/MainPage.css';
 import MyLabel from '../UI/label/MyLabel';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { useState } from 'react';
 import InputAdornment from '@mui/material/InputAdornment';
 
 const SettingsOption = ({ title, options, handler, value, idx, input }) => {

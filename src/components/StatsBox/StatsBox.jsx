@@ -15,7 +15,8 @@ const StatsBox = () => {
         { id: 1, title: 'Текущая скорость', value: 0 },
         { id: 2, title: 'Количество оборотов', value: 0 },
         { id: 3, title: 'Количество сбросов', value: 0 },
-        { id: 4, title: 'Количество вакцинаций', value: 0 },
+        { id: 4, title: 'Количество вакцинаций 1', value: 0 },
+        { id: 5, title: 'Количество вакцинаций 2', value: 0 },
     ])
 
     const fetchData = async () => {

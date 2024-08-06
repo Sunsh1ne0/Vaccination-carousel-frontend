@@ -14,8 +14,6 @@ const SettingsBox = () => {
     const posSec = 2;
     const rotSpeed = 0;
     const pusher = 'Без сброса';
-    let nameSetIt;
-
 
     const [settings, setSettings] = useState([
         { id: 0, title: 'Направление вращения', options: ['По часовой', 'Против часовой'], nameSet: 'rotDir', value: dir, input: 'SelectInput' },
@@ -28,12 +26,12 @@ const SettingsBox = () => {
     const updateSettings = () => {
         try {
             let respCopy = {}
-            {
-                settings.map((setting, index) => (
-                    respCopy[setting['nameSet']] = ((setting['value'] === '' ? 0 : setting['value']))
-                )
-                )
-            }
+
+            settings.map((setting, index) => (
+                respCopy[setting['nameSet']] = ((setting['value'] === '' ? 0 : setting['value']))
+            )
+            )
+
 
             console.log(respCopy);
 
@@ -54,24 +52,9 @@ const SettingsBox = () => {
 
     const handleChange = (valueNew, idx) => {
         let copySet = [];
-        { settings.map((setting, index) => copySet.push((index === idx) ? { ...setting, value: valueNew } : setting)) }
+        settings.map((setting, index) => copySet.push((index === idx) ? { ...setting, value: valueNew } : setting))
         setSettings(copySet)
 
-    };
-
-    const headers = {
-        "Accept": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "X-Requested-With": "XMLHttpRequest",
-        "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
-    }
-
-    const requestOptions = {
-        method: 'GET',
-        headers: headers,
-        redirect: 'follow',
-        mode: 'cors',
     };
 
     const fetchData = async () => {
@@ -104,7 +87,7 @@ const SettingsBox = () => {
             <Box className='boxInner'>
                 {settings.map((setting, index) => <SettingsOption title={setting.title} options={setting.options} key={setting.id} handler={handleChange} value={setting.value} idx={setting.id} input={setting.input} />)}
             </Box>
-            <Box sx={{ width: '100%', justifyContent: 'center', display:'flex', height: '4em'}}>
+            <Box sx={{ width: '100%', justifyContent: 'center', display: 'flex', height: '4em' }}>
                 <MyButton onClick={updateSettings}>
                     Сохранить
                 </MyButton>

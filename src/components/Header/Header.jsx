@@ -52,7 +52,7 @@ export default function Header() {
           </IconButton>
         </Box>
         <Box sx={{ margin: 'auto', marginRight:'1em' }}>
-          <img src={Logo_Agrobit} />
+          <img src={Logo_Agrobit} alt=''/>
         </Box>
       </Box>
       <Stack

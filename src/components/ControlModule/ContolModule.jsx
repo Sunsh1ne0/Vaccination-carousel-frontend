@@ -7,7 +7,6 @@ import makeRequest from '../../helper/makeRequest';
 import useInterval from '../../helper/useInterval';
 
 const ControlModule = () => {
-    const [value, setValue] = useState(0);
     const [startBtnText, setStartBtnText] = useState('Старт')
     const [sessionBtnText, setSessionBtnText] = useState('Начать сессию')
     const [state, setState] = useState({ startFlag: false, sessionFlag: false })
@@ -63,7 +62,7 @@ const ControlModule = () => {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, )
 
     useInterval(() => {
         fetchData()
