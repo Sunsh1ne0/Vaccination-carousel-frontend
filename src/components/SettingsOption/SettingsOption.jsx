@@ -60,7 +60,8 @@ const SettingsOption = ({ title, options, handler, value, idx, input }) => {
                     <Slider
                         size='small'
                         aria-label="Speed"
-                        defaultValue={2.0}
+                        value={value}
+                        // defaultValue={value}
                         getAriaValueText={() => { return value; }}
                         onChange={event => { handler(event.target.value, idx) }}
                         valueLabelDisplay="on"

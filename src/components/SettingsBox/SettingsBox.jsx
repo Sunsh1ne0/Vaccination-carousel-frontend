@@ -35,11 +35,6 @@ const SettingsBox = () => {
 
             console.log(respCopy);
 
-            // fetch("http://localhost:8000/settings_update", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(respCopy)
-            // })
             makeRequest('POST',
                 REACT_APP_API + '/api/settings_update',
                 respCopy
