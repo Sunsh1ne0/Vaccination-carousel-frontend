@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Alert } from '@mui/material';
 import '../../styles/MainPage.css';
 import { useState } from "react";
 import SettingsOption from '../SettingsOption/SettingsOption';
@@ -23,6 +23,14 @@ const SettingsBox = () => {
         { id: 4, title: 'Скорость вращения', options: [], nameSet: 'targetSpeed', value: rotSpeed, input: 'SliderInput' },
     ])
 
+    const [dispError, SetDispError] = useState('none')
+    const [dispSuccess, SetDispSuccess] = useState('none')
+
+    const hideAlert = () => {
+        SetDispError('none')
+        SetDispSuccess('none')
+    }
+
     const updateSettings = () => {
         try {
             let respCopy = {}
@@ -35,10 +43,19 @@ const SettingsBox = () => {
 
             console.log(respCopy);
 
-            makeRequest('POST',
-                REACT_APP_API + '/api/settings_update',
-                respCopy
-            )
+            if (settings[1]['value'] === settings[2]['value']) {
+                SetDispError('flex')
+                setTimeout(hideAlert, 3000)
+            }
+            else{
+                SetDispSuccess('flex')
+                setTimeout(hideAlert, 3000)
+                makeRequest('POST',
+                    REACT_APP_API + '/api/settings_update',
+                    respCopy
+                )
+            }
+            
         }
         catch (error) {
             console.log('Error:', error);
@@ -73,6 +90,7 @@ const SettingsBox = () => {
 
     return (
         <div className="settingsBox">
+            
             <Typography
                 className='boxTitle'
                 gutterBottom
@@ -82,11 +100,16 @@ const SettingsBox = () => {
             <Box className='boxInner'>
                 {settings.map((setting, index) => <SettingsOption title={setting.title} options={setting.options} key={setting.id} handler={handleChange} value={setting.value} idx={setting.id} input={setting.input} />)}
             </Box>
+
+            <Alert severity="error" sx={{display:dispError}}>Позиции вакцинаторов не должны совпадать!</Alert>
+            <Alert severity="success" sx={{display:dispSuccess}}>Настройки сохранены!</Alert>
+
             <Box sx={{ width: '100%', justifyContent: 'center', display: 'flex', height: '4em' }}>
                 <MyButton onClick={updateSettings}>
                     Сохранить
                 </MyButton>
             </Box>
+            
 
         </div>
     );
