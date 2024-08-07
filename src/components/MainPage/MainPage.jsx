@@ -6,14 +6,11 @@ import ControlModule from "../ControlModule/ContolModule";
 
 const MainPage = () => {
     return (
-        <div>
-            <div className="boxContent">
-                <Box>
-                    <StatsBox />
-                    <ControlModule />
-                </Box>
-            </div>
-
+        <div className="boxContent">
+            <Box sx={{marginBottom:'5em'}}>
+                <StatsBox />
+                <ControlModule />
+            </Box>
         </div>
     );
 }

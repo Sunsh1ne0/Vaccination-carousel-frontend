@@ -5,14 +5,14 @@ const MyButton = ({children, ...props}) => {
     return ( 
         <button {...props} className={classes.myBtn}>
             <span> {children} </span>
-            <div class="fill-animation"></div>
-            <div class="color-layer red"></div>
-            <div class="color-layer green"></div>
-            <div class="color-layer blue"></div>
-            <div class="color-layer orange"></div>
-            <div class="color-layer purple"></div>
-            <div class="color-layer indigo"></div>
-            <div class="color-layer yellow"></div>
+            <div className="fill-animation"></div>
+            <div className="color-layer red"></div>
+            <div className="color-layer green"></div>
+            <div className="color-layer blue"></div>
+            <div className="color-layer orange"></div>
+            <div className="color-layer purple"></div>
+            <div className="color-layer indigo"></div>
+            <div className="color-layer yellow"></div>
         </button>
      );
 }

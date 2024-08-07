@@ -20,7 +20,7 @@ const SettingsBox = () => {
         { id: 1, title: 'Позиция вакцинатора 1', options: [2, 3, 4, 5, 6, 7, 8, 9], nameSet: 'vacPos1', value: posFirst, input: 'SelectInput' },
         { id: 2, title: 'Позиция вакцинатора 2', options: [2, 3, 4, 5, 6, 7, 8, 9], nameSet: 'vacPos2', value: posSec, input: 'SelectInput' },
         { id: 3, title: 'Толкатель', options: ['Без сброса', 'Сброс всех', 'Одна вакцина', 'Две вакцины'], nameSet: 'pusher', value: pusher, input: 'SelectInput' },
-        { id: 4, title: 'Скорость вращения', options: [], nameSet: 'targetSpeed', value: rotSpeed, input: 'TextInput' },
+        { id: 4, title: 'Скорость вращения', options: [], nameSet: 'targetSpeed', value: rotSpeed, input: 'SliderInput' },
     ])
 
     const updateSettings = () => {
