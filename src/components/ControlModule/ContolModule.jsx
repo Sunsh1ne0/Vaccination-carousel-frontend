@@ -12,7 +12,17 @@ const ControlModule = () => {
     const [state, setState] = useState({ startFlag: false, sessionFlag: false })
 
     const toggleStart = () => {
-        const newState = { ...state, startFlag: !state['startFlag'] }
+        let newState = { ...state, startFlag: !state['startFlag'] }
+
+        console.log(newState['startFlag'])
+
+        if ((state['sessionFlag'] === false) && (newState['startFlag']))
+        {
+            newState = { ...newState, sessionFlag: !state['sessionFlag'] };
+            (newState['sessionFlag'] ? setSessionBtnText('Завершить сессию') : setSessionBtnText('Начать сессию'))
+
+
+        }
 
         setState(newState);
         (newState['startFlag'] ? setStartBtnText('Стоп') : setStartBtnText('Старт'))
@@ -44,6 +54,7 @@ const ControlModule = () => {
         try {
             const responseState = await makeRequest("GET",
                 REACT_APP_API + '/api/state')
+            // console.log('Fetching') 
             if (responseState) {
                 if (state['startFlag'] !== responseState['startFlag']) {
                     (responseState['startFlag'] ? setStartBtnText('Стоп') : setStartBtnText('Старт'))
@@ -52,9 +63,11 @@ const ControlModule = () => {
                     (responseState['sessionFlag'] ? setSessionBtnText('Завершить сессию') : setSessionBtnText('Начать сессию'))
                 }
                 setState(responseState)
+                // console.log(state) 
             }
         }
         catch (error) {
+            // console.log('Fetching error')
 
         }
 
@@ -62,28 +75,18 @@ const ControlModule = () => {
 
     useEffect(() => {
         fetchData()
-    }, )
+    }, [])
 
     useInterval(() => {
         fetchData()
-    }, 1000)
+    }, 200)
 
     return <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '5em' }} elevation={24}>
-        {/* <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          >
-            <BottomNavigationAction label="Статистика" icon={<StackedLineChartIcon />} />
-            <BottomNavigationAction label="Настройки" icon={<SettingsIcon />} />
-          </BottomNavigation> */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}>
             <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', height: '100%' }}>
                 <MyButton id='startBtn' onClick={toggleStart}> {startBtnText} </MyButton>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', height: '100%' }}>
+            <Box sx={{ display: (state['sessionFlag'] ? 'flex' : 'none'), justifyContent: 'center', width: '100%', height: '100%' }}>
                 <MyButton height='10px !important' onClick={toggleSession}> { sessionBtnText } </MyButton>
             </Box>
         </Box>

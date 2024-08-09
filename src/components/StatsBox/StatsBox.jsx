@@ -28,7 +28,7 @@ const StatsBox = () => {
             if (responseStats) {
                 setStats(responseStats)
             }
-
+            // console.log('Fetching data')
         }
         catch (error) {
             // console.error(error)
@@ -37,14 +37,14 @@ const StatsBox = () => {
 
     }
 
-    useEffect(() => {
-        fetchData()
-    }, [])
+    // useEffect(() => {
+    //     fetchData()
+    // }, [])
 
     useInterval(() => {
         // Your custom logic here
         fetchData()
-    }, 1000);
+    }, 200);
 
     return (
         <div className='statsBox'>
