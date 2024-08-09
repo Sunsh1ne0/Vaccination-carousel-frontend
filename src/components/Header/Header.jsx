@@ -145,10 +145,7 @@ export default function Header() {
           </Box>
         </Box>
       </Stack>
-
-      <DrawerMenu toggleDrawer={toggleDrawer} open={open} />
-
-      
+      <DrawerMenu toggleDrawer={toggleDrawer} open={open} />      
     </Box>
   );
 }

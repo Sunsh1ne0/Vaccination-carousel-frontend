@@ -29,9 +29,7 @@ const SettingsOption = ({ title, options, handler, value, idx, input }) => {
                 sx={{ width: '40%' }}> {title} </MyLabel>
             {input === 'SelectInput' ?
                 <FormControl size="small" sx={{ width: '70%', margin: 'auto', marginRight: '0.3em' }}>
-                    {/* <InputLabel sx={{ fontSize:'1em', height:'50px'}}>{title}</InputLabel> */}
                     <Select
-                        // displayEmpty
                         variant='filled'
                         value={value}
                         label={title}
@@ -61,7 +59,6 @@ const SettingsOption = ({ title, options, handler, value, idx, input }) => {
                         size='small'
                         aria-label="Speed"
                         value={value}
-                        // defaultValue={value}
                         getAriaValueText={() => { return value; }}
                         onChange={event => { handler(event.target.value, idx) }}
                         valueLabelDisplay="on"
@@ -73,7 +70,6 @@ const SettingsOption = ({ title, options, handler, value, idx, input }) => {
                         sx={{ margin: 'auto', width: '70%', fontSize: '1em', marginRight: '1em' }}
                     />
                 )
-
             }
         </Box>
     );

@@ -3,7 +3,7 @@ import InformationLine from "../InformationLine/InformationLine";
 import { Box, Typography } from '@mui/material';
 import '../../styles/StatsBox.css';
 import '../../styles/MainPage.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import makeRequest from '../../helper/makeRequest';
 import { REACT_APP_API } from '../../api/api';
 
@@ -21,29 +21,19 @@ const StatsBox = () => {
 
     const fetchData = async () => {
         try {
-            // const response = await fetch("http://localhost:8000/stats", requestOptions)
             const responseStats = await makeRequest("GET",
                 REACT_APP_API + '/api/stats')
-            // console.log(response)
             if (responseStats) {
                 setStats(responseStats)
             }
-            // console.log('Fetching data')
         }
         catch (error) {
-            // console.error(error)
-            // console.error("NAN")
+            console.error('Fetching error: ' + error)
         }
-
     }
 
-    // useEffect(() => {
-    //     fetchData()
-    // }, [])
-
     useInterval(() => {
-        // Your custom logic here
-        fetchData()
+        fetchData();
     }, 200);
 
     return (

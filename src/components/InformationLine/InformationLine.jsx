@@ -2,7 +2,6 @@ import React from 'react'
 import MyLabel from '../UI/label/MyLabel';
 import '../../styles/InformationLine.css';
 
-
 const InformationLine = ({title, value, id}) => {
     return (
         <div className="oneLineStat">

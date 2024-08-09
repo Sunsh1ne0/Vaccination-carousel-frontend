@@ -40,9 +40,6 @@ const SettingsBox = () => {
             )
             )
 
-
-            console.log(respCopy);
-
             if (settings[1]['value'] === settings[2]['value']) {
                 SetDispError('flex')
                 setTimeout(hideAlert, 3000)
@@ -54,8 +51,7 @@ const SettingsBox = () => {
                     REACT_APP_API + '/api/settings_update',
                     respCopy
                 )
-            }
-            
+            } 
         }
         catch (error) {
             console.log('Error:', error);
@@ -66,7 +62,6 @@ const SettingsBox = () => {
         let copySet = [];
         settings.map((setting, index) => copySet.push((index === idx) ? { ...setting, value: valueNew } : setting))
         setSettings(copySet)
-
     };
 
     const fetchData = async () => {
@@ -80,12 +75,10 @@ const SettingsBox = () => {
         }
         catch (error) {
         }
-
     }
 
     useEffect(() => {
-        fetchData()
-
+        fetchData();
     }, [])
 
     return (
@@ -109,8 +102,6 @@ const SettingsBox = () => {
                     Сохранить
                 </MyButton>
             </Box>
-            
-
         </div>
     );
 }

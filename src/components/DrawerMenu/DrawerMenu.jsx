@@ -36,7 +36,7 @@ const DrawerMenu = ({ toggleDrawer, open }) => {
     );
 
     return (
-        <Drawer open={open} onClose={toggleDrawer(false)}>
+        <Drawer transitionDuration={600} open={open} onClose={toggleDrawer(false)}>
             {DrawerList}
         </Drawer>
     );
