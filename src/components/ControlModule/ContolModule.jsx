@@ -80,7 +80,7 @@ const ControlModule = () => {
                 <MyButton id='startBtn' onClick={toggleStart}> {startBtnText} </MyButton>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', width: sessionBtnWidth, opacity: sessionBtnWidth, height: '100%',
-                transition: 'width 0.6s ease-in-out, opacity 1s ease-in-out'
+                transition: 'width 0.6s ease-in-out, opacity 0.6s ease-in-out'
             }}>
                 {sessionBtnWidth === '0%' 
                 ? 
