@@ -6,6 +6,7 @@ import {
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from "react-router-dom";
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 
 const DrawerMenu = ({ toggleDrawer, open }) => {
@@ -17,15 +18,18 @@ const DrawerMenu = ({ toggleDrawer, open }) => {
     function gotoStats() {
         navigate("/")
     }
+    function gotoReport() {
+        navigate("/report")
+    }
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                {['Статистика', 'Настройки'].map((text, index) => (
+                {['Статистика', 'Настройки', 'Отчет'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton
-                            onClick={index % 2 === 0 ? gotoStats : gotoSettings}>
+                            onClick={index === 0 ? gotoStats : (index === 1 ? gotoSettings : gotoReport)}>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <StackedLineChartIcon /> : <SettingsIcon />}
+                                {index === 0 ? <StackedLineChartIcon /> : (index === 1 ? <SettingsIcon /> : <SummarizeIcon /> )}
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItemButton>
