@@ -11,6 +11,10 @@ const ControlModule = () => {
     const [sessionBtnText, setSessionBtnText] = useState('Завершить сессию')
     const [state, setState] = useState({ startFlag: false, sessionFlag: false })
     const [sessionBtnWidth, setSessionBtnWidth] = useState('0%')
+    const [maxBtnWidth, setMaxBtnWidth] = useState('8em')
+    const [maxBtnHeight, setMaxBtnHeight] = useState('3.5em')
+    const [paperHeight, setPaperHeight] = useState('5em')
+    const [butColor, setButColor] = useState('transparent')
 
     const toggleStart = () => {
         let newState = { ...state, startFlag: !state['startFlag'] }
@@ -20,10 +24,36 @@ const ControlModule = () => {
         if ((state['sessionFlag'] === false) && (newState['startFlag']))
         {
             // document.getElementById('sessionBtn').width = '100%'
-            setSessionBtnWidth('100%');
+            setSessionBtnWidth('25%');
             newState = { ...newState, sessionFlag: !state['sessionFlag'] };
             (newState['sessionFlag'] ? setSessionBtnText('Завершить сессию') : setSessionBtnText('Начать сессию'))
+            setMaxBtnWidth('100em');
+                setMaxBtnHeight('95%');
+                setPaperHeight('10em');
+                setButColor('rgba(214, 31, 31, 0.5)');
+
         }
+
+        if ((state['sessionFlag'] === true) && (!newState['startFlag']))
+            {
+                // document.getElementById('sessionBtn').width = '100%'
+                setMaxBtnWidth('8em');
+                setMaxBtnHeight('3.5em');
+                setSessionBtnWidth('100%');
+                setButColor('transparent');
+                setPaperHeight('5em');
+
+            }
+        if ((state['sessionFlag'] === true) && (newState['startFlag']))
+            {
+                // document.getElementById('sessionBtn').width = '100%'
+                setMaxBtnWidth('100em');
+                setMaxBtnHeight('95%');
+                setButColor('rgba(214, 31, 31, 0.5)');
+                setSessionBtnWidth('25%');
+                setPaperHeight('10em');
+
+            }
 
         setState(newState);
         (newState['startFlag'] ? setStartBtnText('Стоп') : setStartBtnText('Старт'))
@@ -40,6 +70,11 @@ const ControlModule = () => {
         if (state['startFlag'] && !newState['sessionFlag']) {
             newState['startFlag'] = !newState['startFlag'];
             (newState['startFlag'] ? setStartBtnText('Стоп') : setStartBtnText('Старт'))
+            setMaxBtnWidth('8em');
+            setMaxBtnHeight('3.5em');
+            setPaperHeight('5em');
+            setButColor('transparent');
+
         }
 
         setState(newState);
@@ -60,7 +95,23 @@ const ControlModule = () => {
                     (responseState['startFlag'] ? setStartBtnText('Стоп') : setStartBtnText('Старт'))
                 }
                 if (state['sessionFlag'] !== responseState['sessionFlag']) {
-                    (responseState['sessionFlag'] ? setSessionBtnWidth('100%') : setSessionBtnWidth('0%'))
+                    if (responseState['sessionFlag'] )
+                    {
+                        setMaxBtnWidth('100em');
+                        setMaxBtnHeight('95%');
+                        setButColor('rgba(214, 31, 31, 0.5)');
+                        setSessionBtnWidth('25%');
+                        setPaperHeight('10em');
+                    }
+                    else
+                    {
+                        setMaxBtnWidth('8em');
+                        setMaxBtnHeight('3.5em');
+                        setPaperHeight('5em');
+                        setButColor('transparent');
+                        setSessionBtnWidth('0%');
+                    }
+                        
                 }
                 setState(responseState)
             }
@@ -74,19 +125,19 @@ const ControlModule = () => {
         fetchData();
     }, 200)
 
-    return <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: '5em' }} elevation={24}>
+    return <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, height:paperHeight, transition:'height 0.6s ease-in-out' }} elevation={24}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', height: '100%' }}>
             <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', height: '100%' }}>
-                <MyButton id='startBtn' onClick={toggleStart}> {startBtnText} </MyButton>
+                <MyButton id='startBtn' backgroundcolor={butColor} heightbtn={maxBtnHeight} maxwidthbtn={maxBtnWidth} transition='max-width 0.6s ease-in-out, height 0.6s ease-in-out, background-color 0.6s ease-in-out' onClick={toggleStart}> {startBtnText} </MyButton>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', width: sessionBtnWidth, opacity: sessionBtnWidth, height: '100%',
                 transition: 'width 0.6s ease-in-out, opacity 0.6s ease-in-out'
             }}>
                 {sessionBtnWidth === '0%' 
                 ? 
-                <MyButton disabled height='10px !important' onClick={toggleSession}> { sessionBtnText } </MyButton>
+                <MyButton heightbtn={maxBtnHeight} maxwidthbtn={maxBtnWidth} transition='max-width 0.6s ease-in-out, height 0.6s ease-in-out' disabled onClick={toggleSession}> { sessionBtnText } </MyButton>
                 :
-                <MyButton height='10px !important' onClick={toggleSession}> { sessionBtnText } </MyButton>}
+                <MyButton heightbtn={maxBtnHeight} maxwidthbtn={maxBtnWidth} transition='max-width 0.6s ease-in-out, height 0.6s ease-in-out' onClick={toggleSession}> { sessionBtnText } </MyButton>}
             </Box>
         </Box>
     </Paper>

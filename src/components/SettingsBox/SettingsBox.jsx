@@ -10,17 +10,19 @@ import { REACT_APP_API } from '../../api/api';
 
 const SettingsBox = () => {
     const dir = 'По часовой';
-    const posFirst = 2;
-    const posSec = 2;
+    const posFirst = 1;
+    const posSec = 1;
     const rotSpeed = 0;
-    const pusher = 'Без сброса';
+    const pusher = 'Сброс всех';
+    const control = 'Включен';
 
     const [settings, setSettings] = useState([
         { id: 0, title: 'Направление вращения', options: ['По часовой', 'Против часовой'], nameSet: 'rotDir', value: dir, input: 'SelectInput' },
-        { id: 1, title: 'Позиция вакцинатора 1', options: [2, 3, 4, 5, 6, 7, 8, 9], nameSet: 'vacPos1', value: posFirst, input: 'SelectInput' },
-        { id: 2, title: 'Позиция вакцинатора 2', options: [2, 3, 4, 5, 6, 7, 8, 9], nameSet: 'vacPos2', value: posSec, input: 'SelectInput' },
-        { id: 3, title: 'Толкатель', options: ['Без сброса', 'Сброс всех', 'Одна вакцина', 'Две вакцины'], nameSet: 'pusher', value: pusher, input: 'SelectInput' },
-        { id: 4, title: 'Скорость вращения', options: [], nameSet: 'targetSpeed', value: rotSpeed, input: 'SliderInput' },
+        { id: 1, title: 'Контроль вакцинации', options: ['Включен', 'Выключен'], nameSet: 'control', value: control, input: 'SelectInput' },
+        { id: 2, title: 'Толкатель', options: ['Сброс всех', 'Одна вакцина', 'Две вакцины'], nameSet: 'pusher', value: pusher, input: 'SelectInput' },
+        { id: 3, title: 'Позиция вакцинатора 1', options: [1, 2, 3, 4, 5, 6, 7, 8], nameSet: 'vacPos1', value: posFirst, input: 'SelectInput' },
+        { id: 4, title: 'Позиция вакцинатора 2', options: [1, 2, 3, 4, 5, 6, 7, 8], nameSet: 'vacPos2', value: posSec, input: 'SelectInput' },
+        { id: 5, title: 'Скорость вращения', options: [], nameSet: 'targetSpeed', value: rotSpeed, input: 'SliderInput' },
     ])
 
     const [dispError, SetDispError] = useState('none')
@@ -40,7 +42,7 @@ const SettingsBox = () => {
             )
             )
 
-            if (settings[1]['value'] === settings[2]['value']) {
+            if (settings[3]['value'] === settings[4]['value']) {
                 SetDispError('flex')
                 setTimeout(hideAlert, 3000)
             }
@@ -91,7 +93,9 @@ const SettingsBox = () => {
                 Настройки
             </Typography>
             <Box className='boxInner'>
-                {settings.map((setting, index) => <SettingsOption title={setting.title} options={setting.options} key={setting.id} handler={handleChange} value={setting.value} idx={setting.id} input={setting.input} />)}
+                { 
+                    settings.map((setting, index) => ((index === 2) || (index === 3) || (index === 4)) && (settings[1]['value'] === 'Выключен') ?  <Box sx={{display: 'none'}} key={setting.id}/> : <SettingsOption title={setting.title} options={setting.options} key={setting.id} handler={handleChange} value={setting.value} idx={setting.id} input={setting.input} />)
+                }
             </Box>
 
             <Alert severity="error" sx={{display:dispError}}>Позиции вакцинаторов не должны совпадать!</Alert>
