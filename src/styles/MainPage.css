@@ -54,3 +54,11 @@ body {
 .boxInner {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)
 }
+
+.settingsBox {
+    margin-bottom: 10em;
+}
+
+.statsBox {
+    margin: 0 0 20px 0;
+}

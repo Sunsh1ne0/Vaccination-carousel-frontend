@@ -1,7 +1,6 @@
 import React from 'react'
 import InformationLine from "../InformationLine/InformationLine";
 import { Box, Typography } from '@mui/material';
-import '../../styles/StatsBox.css';
 import '../../styles/MainPage.css';
 import { useState } from 'react';
 import makeRequest from '../../helper/makeRequest';
